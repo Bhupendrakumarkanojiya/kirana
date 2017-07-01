@@ -28,7 +28,7 @@ export class AuthService {
         const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
         return new Promise(function (resolve, reject) {
-            const POST_USER_LOGIN = '/';
+            const POST_USER_LOGIN = 'http://localhost:8080/api/login';
             that.http.post(POST_USER_LOGIN, postData, { headers })
                 .subscribe(
                 (data: any) => {
@@ -37,15 +37,19 @@ export class AuthService {
                 },
                 err => {
                     reject(err);
+                    console.log("failed calling the api");
                     that.isLogin = false;
                 },
             );
         });
     }
 
+    clearSession():void{
+        window.sessionStorage.clear();
+    }
     logout(): void {
         // TODO: invalidate _sso token by calling logout webservice on server
-        // this.appUserService.clearSession();
+        this.clearSession();
         this.isLoggedIn.next(false);
         this.isLogin = false;
         this.redirectUrl = null;
@@ -84,7 +88,5 @@ export class AuthService {
         // return this.appUserService.isAccessible(url.slice(1));
     }
 
-    getAccessPermission(routePath: string) {
-        return this.appUserService.getAccessPermission(routePath.slice(1));
-    }
+    
 }
