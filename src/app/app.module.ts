@@ -1,3 +1,6 @@
+import { AuthService } from './auth.service';
+import { EventBrokerService } from './event.broker.service';
+import { AuthGuard } from './auth.guard';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +24,10 @@ import { PagesModule } from './pages/pages.module';
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
-  GlobalState
+  GlobalState,
+  AuthGuard,
+  EventBrokerService,
+  AuthService,
 ];
 
 export type StoreType = {
