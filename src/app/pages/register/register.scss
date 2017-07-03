@@ -1,1 +1,9 @@
 @import '../../theme/sass/auth';
+.verticle-lines {
+      width: 1px; /* Line width */
+      height: auto; /* Override in-line if you want specific height. */
+      border-left: dotted 1px #ccc;
+}
+.margin-bottom-70{
+    margin-bottom:70px;
+}
