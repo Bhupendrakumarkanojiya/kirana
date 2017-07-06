@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { RegisterService } from './register.service';
 import { Component, Directive } from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
@@ -20,7 +21,7 @@ export class Register {
 
   public submitted:boolean = false;
 
-  constructor(fb:FormBuilder, private registerService:RegisterService) {
+  constructor(fb:FormBuilder, private registerService:RegisterService, private router: Router) {
 
     this.form = fb.group({
       'name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -60,6 +61,10 @@ export class Register {
 
       this.registerService.createShop(data).then(data=>{
         console.log(data);
+        if(data) {
+          alert(data);
+          this.router.navigate(['success'])
+        }
       })
   /*    
   headers: {

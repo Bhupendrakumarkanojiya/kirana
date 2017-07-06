@@ -1,3 +1,4 @@
+import { RegSuccessComponent } from './reg-success/reg-success.component';
 import { Routes, RouterModule }  from '@angular/router';
 
 import { Register } from './register.component';

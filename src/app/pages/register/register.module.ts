@@ -6,6 +6,7 @@ import { NgaModule } from '../../theme/nga.module';
 
 import { Register } from './register.component';
 import { routing }       from './register.routing';
+import { RegSuccessComponent } from './reg-success/reg-success.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { routing }       from './register.routing';
     routing
   ],
   declarations: [
-    Register
+    Register,
+    RegSuccessComponent
   ],
   providers:[RegisterService]
 })

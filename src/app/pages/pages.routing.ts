@@ -16,6 +16,7 @@ export const routes: Routes = [
     path: 'register',
     loadChildren: 'app/pages/register/register.module#RegisterModule'
   },
+  
   {
     path: 'pages',
     component: Pages,
