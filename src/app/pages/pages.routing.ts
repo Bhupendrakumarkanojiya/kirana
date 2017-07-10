@@ -7,13 +7,14 @@ import { ModuleWithProviders } from '@angular/core';
 // export function loadChildren(path) { return System.import(path); };
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+  /*{ path: '', redirectTo: 'login', pathMatch: 'full' },*/
   {
     path: 'login',
     loadChildren: 'app/pages/login/login.module#LoginModule'
   },
   {
-    path: 'register',
+    path: 'dmadmin/register',
     loadChildren: 'app/pages/register/register.module#RegisterModule'
   },
   
@@ -22,7 +23,8 @@ export const routes: Routes = [
     component: Pages,
     children: [
       /*{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },*/
-      { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule',canActivate:[AuthGuard] },
+     
+      { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' ,canActivate:[AuthGuard]},
       { path: 'editors', loadChildren: './editors/editors.module#EditorsModule',canActivate:[AuthGuard] },
       { path: 'components', loadChildren: './components/components.module#ComponentsModule',canActivate:[AuthGuard] },
       { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' ,canActivate:[AuthGuard]},

@@ -41,10 +41,19 @@ export class BaPageTop implements OnInit{
   public scrolledChanged(isScrolled) {
     this.isScrolled = isScrolled;
   }
+
    getUser(){
-    this.appUserService.getUser().then(data=>{
-      this.userData = data.json();
-      console.log(this.userData)
-    })
+    console.log('loggedInUser')
+    
+    let currentUser = window.sessionStorage.getItem('current_user');
+    if(currentUser){
+       console.log(currentUser)
+    this.userData = JSON.parse(currentUser);
+  }else{
+      let user = {current_user:{name:''}};
+       this.userData=user;
+    }
+   
+    
    }
 }

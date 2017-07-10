@@ -1,3 +1,4 @@
+import { DmshopModule } from './dmshop/dmshop.module';
 import { AuthService } from './auth.service';
 import { EventBrokerService } from './event.broker.service';
 import { AuthGuard } from './auth.guard';
@@ -53,7 +54,8 @@ export type StoreType = {
     NgaModule.forRoot(),
     NgbModule.forRoot(),
     PagesModule,
-    routing
+    routing,
+    DmshopModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS

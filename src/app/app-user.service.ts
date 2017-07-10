@@ -9,16 +9,20 @@ export class AppUserService {
 
   getUser():Promise<any> {
     
-    const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const headers = new Headers({  });
     const that = this;
      return new Promise(function (resolve, reject) {
-            const url = 'http://localhost:8080/api/user';
-
+        let user = JSON.parse(window.sessionStorage.getItem('current_user'));
+            console.log(user.current_user.uid)
+       
+            const url = 'http://www.dialmarts.com/dms/user/'+user.current_user.uid+'?_format=hal_json';
+            console.log("accessing: "+url)
             that.http.get(url, { headers })
                 .subscribe(
                 (data: any) => {
-
+                    console.log(data);
                     resolve(data);
+                    console.log("accessing: success")
                 },
                 err => {
                     reject(err);

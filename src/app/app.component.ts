@@ -1,4 +1,5 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Router, RouterStateSnapshot } from '@angular/router';
+import { Component, ViewContainerRef, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
 import { GlobalState } from './global.state';
@@ -14,21 +15,29 @@ import { layoutPaths } from './theme/theme.constants';
   selector: 'app',
   styleUrls: ['./app.component.scss'],
   template: `
-    <main [class.menu-collapsed]="isMenuCollapsed" baThemeRun>
+  
+    <main *ngIf="isAdmin" [class.menu-collapsed]="isMenuCollapsed" baThemeRun>
       <div class="additional-bg"></div>
       <router-outlet></router-outlet>
     </main>
+  
+    <div *ngIf="!isAdmin">
+     <div class="additional-bg"></div>
+      <router-outlet></router-outlet>
+    </div>
   `
 })
-export class App {
+export class App{
 
   isMenuCollapsed: boolean = false;
-
+isAdmin:boolean = false;
   constructor(private _state: GlobalState,
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
               private viewContainerRef: ViewContainerRef,
-              private themeConfig: BaThemeConfig) {
+              private themeConfig: BaThemeConfig
+            
+              ) {
 
     themeConfig.config();
 
@@ -37,8 +46,22 @@ export class App {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
+
+    let url = window.location.href;
+    console.log(url)
+    if(url.indexOf('dmadmin') > -1 || url.indexOf('login') > -1 || 
+    url.indexOf('register') > -1 || url.indexOf('pages') > -1){
+      console.log("admin")
+      this.isAdmin = true;
+    }
+    else{
+      this.isAdmin = false;
+      console.log("front") 
+    }
+   
   }
 
+ 
   public ngAfterViewInit(): void {
     // hide spinner once all loaders are completed
     BaThemePreloader.load().then((values) => {

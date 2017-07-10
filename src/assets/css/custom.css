@@ -1,0 +1,22 @@
+#title {
+    text-align: -webkit-center;
+}
+#whatandwhere {
+    text-align: -webkit-right;
+    margin-top: -77px;
+    margin-right: 36px;
+}
+input#where {
+    margin-left: 1%;
+    margin-bottom: 19px;
+}
+
+#whatandwhere input {
+    width: 26%;
+    border: 1px solid #FE980F;
+    padding: 5px;
+}
+img.finger {
+    width: 5%;
+    margin-right: 23px;
+}

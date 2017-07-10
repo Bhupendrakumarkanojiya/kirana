@@ -22,17 +22,23 @@ export class AuthService {
 
     }
 
-    login(user: string, pass: string): Promise<any> {
+    login(postData): Promise<any> {
         const that = this;
-        const postData = 'username=' + user + '&password=' + pass;
-        const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        
+       // const headers = new Headers({ 'Content-Type': 'application/hal+json' });
 
+        const headers = new Headers({ 
+          'Content-Type': 'application/hal+json',  
+          /*'Accept':'application/json',*/
+          /*'Authorization':'Basic YWRtaW46RGlhbEAwNTIy'*/
+        
+      });
+      console.log(postData);
         return new Promise(function (resolve, reject) {
-            const POST_USER_LOGIN = 'http://localhost:8080/api/login';
+            const POST_USER_LOGIN = 'http://www.dialmarts.com/dms/user/login?_format=hal_json';
             that.http.post(POST_USER_LOGIN, postData, { headers })
                 .subscribe(
                 (data: any) => {
-
                     resolve(data);
                 },
                 err => {
